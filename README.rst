@@ -61,8 +61,8 @@ Examples
 
 Please note, test.py will still fail with errors because I have not fully ported all the code to Python 3.
 Enough of the code has been ported to let you do:
- pds_parser = Parser()
- label = pds_parser.parse(open_pds(input_file))
+>>> pds_parser = Parser()
+>>> label = pds_parser.parse(open_pds(input_file))
 
 Disregard the followingg until I completely port the code to Python 3
 First, you may want to run tests.py to verify that things seem to be working. That files was based on the interacitve examples below. There are more examples in the documentation.
