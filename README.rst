@@ -34,29 +34,38 @@ Installation
 
 #. Install PIL
 
-#. Install PyPDS
+#. Install PyPDS as a development (local) branch. It is highly recommended you install PyPDS as a local branch.
+   This will allow you to take advantage of updates and bugfixes to the code by simply downloading the latest
+   code updates from the git repo. This way you do not have to uninstall then reinstall the module to incorporate
+   the latest code.
 
-	* From the Python Package Index
+* First clone the github repository
 
-		pip install PyPDS
-		
-		Note that starting from pip version >= 1.4 you need to include the --pre(-release) 
-		option because of PyPDS' non-standard versioning scheme.
-		So, use: 
-		
-		pip install --pre PyPDS
+		git clone https://github.com/RayEspiritu/PyPDS.git
 
-	* From the GitHub repository
+	* To install as a local branch:
 
-		git clone git://github.com/RyanBalfanz/PyPDS.git
+        pip install -e <path/to/your/local/darttk/package/directory containing setup.py>
 
-If you want to contribute, consider creating your own fork and submitting a pull request.
+        NOTE: This is not a path to setup.py! This is the path to the root directory containing setup.py!
+        As an example, if you are user werkzeug and you want to use your copy of the PyPDS package
+        that you put in /homes/werkzeug/git/pypds/PyPDS, you would do:
+        pip install -e /homes/werkzeug/git/pypds/PyPDS
+
+If you want to contribute, consider creating a new branch within this fork and submitting a pull request.
 
 .. _Examples:
 
 Examples
 ========
 
+Please note, test.py will still fail with errors because I have not fully ported all the code to Python 3.
+Enough of the code has been ported to let you do the following.
+
+>>> pds_parser = Parser()
+>>> label = pds_parser.parse(open_pds(input_file))
+
+Disregard the followingg until I completely port the code to Python 3
 First, you may want to run tests.py to verify that things seem to be working. That files was based on the interacitve examples below. There are more examples in the documentation.
 
 Working with labels

@@ -137,7 +137,7 @@ class ImageExtractor(ExtractorBase):
 				readSize = dim[0] * dim[1]
 			elif imageSampleBits == 16:
 				readSize = dim[0] * dim[1] * 2
-			print readSize
+			print(readSize)
 			if self.log: self.log.debug("Seek successful, reading data (%s)" % (readSize))
 			# rawImageData = f.readline()
 			# f.seek(-int(self.labels["RECORD_BYTES"]), os.SEEK_CUR)
@@ -149,7 +149,7 @@ class ImageExtractor(ExtractorBase):
 					if self.log: self.log.debug("Secure hash verification failed")
 					if self.raisesChecksumError:
 						errorMessage = "Verification failed! Expected '%s' but got '%s'." % (md5Checksum, rawImageChecksum)
-						raise ChecksumError, errorMessage
+						raise ChecksumError(errorMessage)
 				else:
 					if self.log: self.log.debug("Secure hash verification passed")
 			if self.log: self.log.debug("Read successful (len: %d), creating Image object" % (len(rawImageData)))
@@ -244,7 +244,7 @@ class ImageExtractor(ExtractorBase):
 			units = imagePointer[1]
 			if not units == '<BYTES>':
 				errorMessage = ("Expected <BYTES> image pointer units but found %s") % (units)
-				raise ValueError, (errorMessage)
+				raise ValueError(errorMessage)
 			else:
 				imageLocation = int(imagePointer[0])
 		else:
@@ -291,12 +291,12 @@ class ImageExtractorTests(unittest.TestCase):
 		for root, dirs, files in os.walk(testDataDir):
 			for name in files:
 				filename = os.path.join(root, name)
-				print filename
+				print(filename)
 				img, _ = imgExtractor.extract(open_pds(filename))
 				try:
 					if img:
 						img.save(outputDir + name + '.jpg')
-				except Exception, e:
+				except (Exception, e):
 					# Re-raise the exception, causing this test to fail.
 					raise
 				else:
