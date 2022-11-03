@@ -60,7 +60,8 @@ Examples
 ========
 
 Please note, test.py will still fail with errors because I have not fully ported all the code to Python 3.
-Enough of the code has been ported to let you do:
+Enough of the code has been ported to let you do the following.
+
 >>> pds_parser = Parser()
 >>> label = pds_parser.parse(open_pds(input_file))
 
